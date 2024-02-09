@@ -26,4 +26,13 @@ public class Grade {
     @ManyToOne
     @JoinColumn(name = "id_student", nullable = false)
     private Student student;
+
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "id=" + id +
+                ", grade=" + grade +
+                ", discipline='" + discipline + '\'' +
+                '}';
+    }
 }

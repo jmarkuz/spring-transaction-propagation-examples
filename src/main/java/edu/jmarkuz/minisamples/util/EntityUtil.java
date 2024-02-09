@@ -3,6 +3,7 @@ package edu.jmarkuz.minisamples.util;
 import edu.jmarkuz.minisamples.entity.Grade;
 import edu.jmarkuz.minisamples.entity.Student;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +16,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Slf4j
 @Component
 public class EntityUtil {
 
     private static final AtomicLong studentId = new AtomicLong(0);
     private static final AtomicLong gradeId = new AtomicLong(0);
-    private static final Map<Long, Student> students = new HashMap<>();
-    private static final Map<Long, List<Grade>> grades = new HashMap<>();
-    private static final Map<Long, Pair<String, String>> names = new HashMap<>();
 
+    private static final Map<Long, Pair<String, String>> names = new HashMap<>();
     static {
         names.put(1L, Pair.of("John", "Doe"));
         names.put(2L, Pair.of("Bob", "Marly"));
@@ -36,6 +36,9 @@ public class EntityUtil {
         names.put(9L, Pair.of("Jeff", "Bezos"));
         names.put(10L, Pair.of("Oprah", "Winfrey"));
     }
+
+    private static Map<Long, Student> students = new HashMap<>();
+    private static Map<Long, List<Grade>> grades = new HashMap<>();
 
     @PostConstruct
     public void init() {
@@ -50,10 +53,10 @@ public class EntityUtil {
                     .registrationDate(Date.from(Instant.now().minus(id, ChronoUnit.DAYS)))
                     .build();
 
-            students.put(student.getId(), student);
+            students.put(id, student);
 
             // adding students grades
-            List<Grade> gradeList = null;
+            List<Grade> gradeList = new ArrayList<>();
             for (var discipline : Discipline.values()) {
                 var gradeId = EntityUtil.gradeId.incrementAndGet();
 
@@ -64,14 +67,11 @@ public class EntityUtil {
                         .student(students.get(id))
                         .build();
 
-                gradeList = grades.get(id);
-                if (gradeList == null) {
-                    gradeList = new ArrayList<>();
-                }
                 gradeList.add(grade);
             }
             grades.put(id, gradeList);
         }
+        logInitData();
     }
 
     private static int getRandomNumber(final int min, final int max) {
@@ -95,5 +95,12 @@ public class EntityUtil {
 
         Discipline(String value) {
         }
+    }
+
+    private static void logInitData() {
+        log.info("Students:");
+        students.forEach((aLong, student) -> log.info(student.toString()));
+        log.info("Grades:");
+        grades.forEach((aLong, grade) -> log.info(grade.toString()));
     }
 }

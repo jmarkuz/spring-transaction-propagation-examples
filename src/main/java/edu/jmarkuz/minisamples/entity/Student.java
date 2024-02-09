@@ -30,4 +30,15 @@ public class Student {
 
     @Column(name = "registration_number", nullable = false, length = 10)
     private String registrationNumber;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                '}';
+    }
 }
