@@ -32,7 +32,7 @@ public class SearchService {
 
         for (Student student : students) {
             log.info(format("Name: %s %s", student.getFirstName(), student.getLastName()));
-            log.info("Registration Number: ".concat(student.getRegistrationNumber()));
+            log.info(format("Registration Number: '%S'", student.getRegistrationNumber()));
         }
     }
 
@@ -52,12 +52,12 @@ public class SearchService {
         Student student = this.studentRepository.findByRegistrationNumber(registrationNumber);
 
         if (student == null) {
-            log.info("Student not found for registration number ".concat(registrationNumber));
+            log.info(format("Student not found for registration number '%S'", registrationNumber));
             return;
         }
 
         log.info(format("Name: %s %s", student.getFirstName(), student.getLastName()));
-        log.info("Registration Number: ".concat(student.getRegistrationNumber()));
+        log.info(format("Registration Number: '%S'", student.getRegistrationNumber()));
     }
 
     /**
@@ -88,12 +88,12 @@ public class SearchService {
         var student = this.studentRepository.findByRegistrationNumber(registrationNumber);
 
         if (student == null) {
-            log.info("Student not found for registration number ".concat(registrationNumber));
+            log.info(format("Student not found for registration number '%S'", registrationNumber));
             return;
         }
 
         log.info(format("Name: %s %s", student.getFirstName(), student.getLastName()));
-        log.info("Registration Number: ".concat(student.getRegistrationNumber()));
+        log.info(format("Registration Number: '%S'", student.getRegistrationNumber()));
     }
 
 }

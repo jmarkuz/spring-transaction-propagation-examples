@@ -1,5 +1,6 @@
 package edu.jmarkuz.minisamples.service;
 
+import edu.jmarkuz.minisamples.exception.FakeErrorException;
 import edu.jmarkuz.minisamples.service.example.Example;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -11,10 +12,19 @@ import org.springframework.stereotype.Service;
 public class ExecutorService {
 
     private final Example example_1;
+    private final Example example_2;
 
     @EventListener(ContextRefreshedEvent.class)
     public void execute() {
-        example_1.execute();
+        // case 1:
+        try {
+            this.example_1.execute();
+        } catch (FakeErrorException e) {
+            this.example_1.showResults();
+        }
+
+        // case 2:
+        example_2.execute();
     }
 
 }
