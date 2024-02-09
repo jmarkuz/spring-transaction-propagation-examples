@@ -20,4 +20,9 @@ public class GradeService {
 
         throw new FakeErrorException("Error occurred");
     }
+
+    @Transactional
+    public void saveGradesSuccessfully(List<Grade> grades) {
+        gradeRepository.saveAll(grades);
+    }
 }
