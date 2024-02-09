@@ -14,6 +14,7 @@ public class ExecutorService {
     private final Example example_1;
     private final Example example_2;
     private final Example example_4;
+    private final Example example_5;
 
     @EventListener(ContextRefreshedEvent.class)
     public void execute() {
@@ -30,6 +31,10 @@ public class ExecutorService {
         // case 4:
         example_4.execute();
         example_4.showResults();
+
+        // case 5:
+        example_5.execute();
+        example_5.showResults();
     }
 
 }

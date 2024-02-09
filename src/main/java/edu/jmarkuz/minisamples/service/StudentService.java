@@ -1,6 +1,7 @@
 package edu.jmarkuz.minisamples.service;
 
 import edu.jmarkuz.minisamples.entity.Student;
+import edu.jmarkuz.minisamples.exception.FakeErrorException;
 import edu.jmarkuz.minisamples.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,11 @@ public class StudentService {
     @Transactional(propagation = Propagation.NEVER)
     public void savePropagationNever(Student student) {
         this.studentRepository.save(student);
+    }
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void saveNotSupported(Student student) {
+        this.studentRepository.save(student);
+        throw new FakeErrorException("Error saving student ".concat(student.toString()));
     }
 }
