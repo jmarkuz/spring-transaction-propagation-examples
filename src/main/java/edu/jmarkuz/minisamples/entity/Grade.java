@@ -24,7 +24,7 @@ public class Grade {
     private String discipline;
 
     @ManyToOne
-    @JoinColumn(name = "id_student", nullable = false)
+    @JoinColumn(name = "id_student"/*, nullable = false*/)
     private Student student;
 
     @Override

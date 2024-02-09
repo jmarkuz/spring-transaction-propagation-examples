@@ -37,8 +37,8 @@ public class EntityUtil {
         names.put(10L, Pair.of("Oprah", "Winfrey"));
     }
 
-    private static Map<Long, Student> students = new HashMap<>();
-    private static Map<Long, List<Grade>> grades = new HashMap<>();
+    private static final Map<Long, Student> students = new HashMap<>();
+    private static final Map<Long, List<Grade>> grades = new HashMap<>();
 
     @PostConstruct
     public void init() {

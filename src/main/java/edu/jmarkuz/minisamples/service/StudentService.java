@@ -20,4 +20,9 @@ public class StudentService {
     public void savePropagationMandatory(Student student) {
         studentRepository.save(student);
     }
+
+    @Transactional(propagation = Propagation.NEVER)
+    public void savePropagationNever(Student student) {
+        this.studentRepository.save(student);
+    }
 }
