@@ -20,10 +20,10 @@ public class Student {
     private Long id;
 
     @Column(name = "first_name", nullable = false, length = 100)
-    private String first_name;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false, length = 100)
-    private String last_name;
+    private String lastName;
 
     @Column(name = "registration_date", nullable = false)
     private Date registrationDate;
