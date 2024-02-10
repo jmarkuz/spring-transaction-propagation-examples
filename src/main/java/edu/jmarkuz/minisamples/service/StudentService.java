@@ -37,4 +37,9 @@ public class StudentService {
     public void savePropagationRequiredNew(Student student) {
         studentRepository.save(student);
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void savePropagationSupports(Student student) {
+        studentRepository.save(student);
+    }
 }
