@@ -4,6 +4,7 @@ import edu.jmarkuz.minisamples.exception.FakeErrorException;
 import edu.jmarkuz.minisamples.service.example.Example;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,19 @@ public class ExecutorService {
     @Value("${example.number:0}")
     private int exampleNumber;
 
+    @Lazy
     private final Example example_0;
+    @Lazy
     private final Example example_1;
+    @Lazy
     private final Example example_2;
+    @Lazy
     private final Example example_4;
+    @Lazy
     private final Example example_5;
+    @Lazy
     private final Example example_6;
+    @Lazy
     private final Example example_7;
 
     @EventListener(ContextRefreshedEvent.class)
