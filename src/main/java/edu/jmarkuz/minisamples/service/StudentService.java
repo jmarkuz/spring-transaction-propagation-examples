@@ -24,12 +24,17 @@ public class StudentService {
 
     @Transactional(propagation = Propagation.NEVER)
     public void savePropagationNever(Student student) {
-        this.studentRepository.save(student);
+        studentRepository.save(student);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public void saveNotSupported(Student student) {
-        this.studentRepository.save(student);
+    public void savePropagationNotSupported(Student student) {
+        studentRepository.save(student);
         throw new FakeErrorException("Error saving student ".concat(student.toString()));
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void savePropagationRequiredNew(Student student) {
+        studentRepository.save(student);
     }
 }

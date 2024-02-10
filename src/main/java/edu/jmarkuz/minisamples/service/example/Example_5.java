@@ -31,7 +31,7 @@ public class Example_5 implements Example {
             this.studentService.save(student1);
 
             log.info("Saving the student ".concat(student2.toString()));
-            this.studentService.saveNotSupported(student2);
+            this.studentService.savePropagationNotSupported(student2);
         } catch (FakeErrorException e) {
             log.info(e.getMessage(), e);
         }
