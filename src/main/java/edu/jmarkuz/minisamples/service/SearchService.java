@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.String.format;
 
@@ -41,6 +42,13 @@ public class SearchService {
      */
     public List<Student> findAllStudents() {
         return this.studentRepository.findAll();
+    }
+
+    /**
+     * Returns students saved grade by id.
+     */
+    public Optional<Grade> findAllGradesById(Long studentId) {
+        return this.gradeRepository.findById(studentId);
     }
 
     /**

@@ -32,27 +32,18 @@ public class ExecutorService {
                 try {
                     this.example_1.execute();
                 } catch (FakeErrorException e) {
-                    this.example_1.showResults();
+                    //todo: add advice on FakeErrorException
                 }
             }
-
             case 2 -> example_2.execute();
 
-            case 4 -> {
-                example_4.execute();
-                example_4.showResults();
-            }
+            case 4 -> example_4.execute();
 
-            case 5 -> {
-                example_5.execute();
-                example_5.showResults();
-            }
-            case 6 -> {
-                example_6.execute();
-            }
-            case 7 -> {
-                example_7.execute();
-            }
+            case 5 -> example_5.execute();
+
+            case 6 -> example_6.execute();
+
+            case 7 -> example_7.execute();
         }
     }
 

@@ -35,7 +35,4 @@ public class Example_7 implements Example {
         this.studentService.savePropagationSupports(student);
     }
 
-    @Override
-    public void showResults() {
-    }
 }

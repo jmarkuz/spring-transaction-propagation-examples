@@ -10,6 +10,7 @@ import org.springframework.transaction.TransactionException;
 @RequiredArgsConstructor
 public class Example_2 implements Example {
     private final StudentService studentService;
+
     @Override
     public void execute() {
         var student = EntityUtil.getStudent(1);
@@ -21,8 +22,4 @@ public class Example_2 implements Example {
         }
     }
 
-    @Override
-    public void showResults() {
-
-    }
 }

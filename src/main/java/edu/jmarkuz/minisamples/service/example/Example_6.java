@@ -1,7 +1,6 @@
 package edu.jmarkuz.minisamples.service.example;
 
 import edu.jmarkuz.minisamples.entity.Grade;
-import edu.jmarkuz.minisamples.entity.Student;
 import edu.jmarkuz.minisamples.exception.FakeErrorException;
 import edu.jmarkuz.minisamples.service.GradeService;
 import edu.jmarkuz.minisamples.service.StudentService;
@@ -20,12 +19,10 @@ public class Example_6 implements Example {
     private final StudentService studentService;
     private final GradeService gradeService;
 
-    private Student student;
-
     @Transactional
     @Override
     public void execute() {
-        student = EntityUtil.getStudent(1);
+        var student = EntityUtil.getStudent(1);
         List<Grade> grades = EntityUtil.getGrades(1);
 
         try {
@@ -39,7 +36,4 @@ public class Example_6 implements Example {
         }
     }
 
-    @Override
-    public void showResults() {
-    }
 }
