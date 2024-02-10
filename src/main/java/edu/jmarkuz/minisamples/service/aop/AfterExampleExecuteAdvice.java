@@ -18,11 +18,12 @@ public class AfterExampleExecuteAdvice {
     @After("execution(* edu.jmarkuz.minisamples.service.example.*.execute())")
     public void logResults() {
         log.info("after execution ----------------");
-        log.info("Search for saved students: ".concat(this.searchService.findAllStudents().toString()));
-        this.searchService.findAllStudents()
-                .forEach(student ->
-                        log.info("Search for saved students grades: {}",
-                                this.searchService.findAllGradesById(student.getId()).toString()));
+        log.info("Search for saved students: ");
+        this.searchService.listAllStudents();
+
+        log.info("Search for saved students grades: ");
+        var students = this.searchService.findAllStudents();
+        students.forEach(this.searchService::listAllStudentsGrade);
         log.info("---------------------------------");
     }
 }
