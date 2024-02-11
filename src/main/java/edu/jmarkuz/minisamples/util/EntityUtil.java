@@ -4,6 +4,7 @@ import edu.jmarkuz.minisamples.entity.Grade;
 import edu.jmarkuz.minisamples.entity.Student;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +41,9 @@ public class EntityUtil {
     private static final Map<Long, Student> students = new HashMap<>();
     private static final Map<Long, List<Grade>> grades = new HashMap<>();
 
+    @Value("${log.init.data:false}")
+    private boolean logInitData;
+
     @PostConstruct
     public void init() {
         for (int i = 0; i < 10; i++) {
@@ -71,7 +75,9 @@ public class EntityUtil {
             }
             grades.put(id, gradeList);
         }
-        logInitData();
+        if (logInitData) {
+            logInitData();
+        }
     }
 
     private static int getRandomNumber(final int min, final int max) {
