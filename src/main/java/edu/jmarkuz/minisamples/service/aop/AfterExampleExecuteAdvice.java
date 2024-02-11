@@ -1,10 +1,13 @@
 package edu.jmarkuz.minisamples.service.aop;
 
+import edu.jmarkuz.minisamples.exception.FakeErrorException;
 import edu.jmarkuz.minisamples.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -26,4 +29,14 @@ public class AfterExampleExecuteAdvice {
         students.forEach(this.searchService::listAllStudentsGrade);
         log.info("---------------------------------");
     }
+
+    //@AfterThrowing(pointcut = "executePointcut()", throwing = "ex")
+    public void logExceptions(FakeErrorException ex) {
+        log.info("Exception thrown in Example = ", ex);
+    }
+
+    //@Pointcut("execution(* edu.jmarkuz.minisamples.service.example.*.*(..))")
+    public void executePointcut() {
+    }
+
 }
