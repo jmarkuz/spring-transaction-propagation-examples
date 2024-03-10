@@ -1,4 +1,4 @@
-# mini-samples
+# Spring transaction propagation level project
 
 Mini samples on java: 'Spring and Transactions'
 
